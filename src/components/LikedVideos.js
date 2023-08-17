@@ -8,8 +8,6 @@ const LikedVideos = () => {
 
   const videos = useSelector((store) => store.app.likedVideos);
 
-  console.log("liked videos", videos);
-
   const darkThemeClass = isDarkTheme
     ? " bg-gray-700 border border-gray-500"
     : "";

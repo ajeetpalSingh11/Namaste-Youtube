@@ -11,12 +11,15 @@ import {
   setWatchLaterVideos,
 } from "../utils/appSlice";
 import { useSearchParams } from "react-router-dom";
+import useWindowDimensions from "../utils/useWindowDimensions";
 
 const VideoDescription = ({ videoData }) => {
   const [likeClicked, setLikeClicked] = useState(false);
   const [watchLaterClicked, setWatchLaterClicked] = useState(false);
   const [subscribeClicked, setSubscribeClicked] = useState(false);
   const [searchParams] = useSearchParams();
+
+  const { height, width } = useWindowDimensions();
 
   const title = videoData.snippet?.title;
   const channelTitle = videoData.snippet?.channelTitle;
@@ -58,10 +61,12 @@ const VideoDescription = ({ videoData }) => {
 
   const darkThemeClassButton = isDarkTheme ? " bg-gray-900 text-white" : "";
 
+  const isMobile = width <= 720;
+
   return (
     <div
       className={
-        "mx-5 my-3 p-5 w-[810px] border border-gray-400 rounded-md flex" +
+        "mx-5 my-3 p-5 w-[96%] border border-gray-400 rounded-md flex" +
         darkThemeClass
       }
     >
@@ -98,7 +103,9 @@ const VideoDescription = ({ videoData }) => {
           }}
         >
           <img className="h-8" alt="theme" src={LIKED_VIDEOS_ICON} />
-          <span className="px-2">{isLiked ? "Liked" : "Like The Video"}</span>
+          {!isMobile && (
+            <span className="px-2">{isLiked ? "Liked" : "Like The Video"}</span>
+          )}
         </button>
         <button
           className={
@@ -111,7 +118,11 @@ const VideoDescription = ({ videoData }) => {
           }}
         >
           <img className="h-8" alt="theme" src={WATCH_LATER_ICON} />
-          <span className="px-2">{isWatchLater ? "Added" : "Watch Later"}</span>
+          {!isMobile && (
+            <span className="px-2">
+              {isWatchLater ? "Added" : "Watch Later"}
+            </span>
+          )}
         </button>
       </div>
     </div>

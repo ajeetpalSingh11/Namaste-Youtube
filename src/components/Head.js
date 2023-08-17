@@ -26,7 +26,11 @@ const Head = () => {
   const searchCache = useSelector((store) => store.search);
   const isDarkTheme = useSelector((store) => store.app.isDarkTheme);
 
-  const darkThemeClass = isDarkTheme ? " bg-gray-700 text-white" : "";
+  const darkThemeClass = isDarkTheme ? " bg-gray-700 text-white" : " bg-white";
+
+  const darkThemeHover = isDarkTheme
+    ? "  hover:bg-gray-900"
+    : "  hover:bg-gray-200";
 
   const dispatch = useDispatch();
 
@@ -119,7 +123,7 @@ const Head = () => {
           {showSuggestions && (
             <div
               className={
-                "bg-white absolute w-[31.3rem] px-2 py-2 border-gray-100 shadow-lg rounded-lg" +
+                "absolute w-[34%] px-2 py-2 border-gray-100 shadow-lg rounded-lg" +
                 darkThemeClass
               }
             >
@@ -127,7 +131,10 @@ const Head = () => {
                 {suggestions.map((s) => (
                   <li
                     key={s}
-                    className="px-2 py-2 shadow-sm hover:cursor-pointer"
+                    className={
+                      "px-2 py-2 rounded-lg shadow-sm hover:cursor-pointer" +
+                      darkThemeHover
+                    }
                   >
                     <button>🔍 {s}</button>
                   </li>
@@ -137,7 +144,7 @@ const Head = () => {
           )}
         </form>
         <div className="col-span-1">
-          <div className="flex justify-around">
+          <div className="flex justify-evenly">
             <button
               onClick={() => {
                 dispatch(setDarkTheme(!isDarkTheme));

@@ -15,7 +15,7 @@ const Button = ({ name }) => {
   return (
     <div
       className={
-        "bg-gray-300 mb-1 cursor-pointer rounded-lg" +
+        "bg-gray-300 mb-1 cursor-pointer rounded-lg border border-gray-400" +
         widthClass +
         darkThemeClass
       }

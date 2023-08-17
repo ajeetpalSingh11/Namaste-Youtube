@@ -39,14 +39,11 @@ const LiveChat = () => {
 
   const darkThemeClass = isDarkTheme ? " bg-gray-800 text-white" : "";
 
-  const widthClass = isMenuOpen ? " w-[12.5rem]" : " w-[28rem]";
-
   return (
     <>
       <div
         className={
-          "p-2 mt-5 ml-2 mr-1 h-[450px] bg-gray-100 rounded-lg rounded-b-none border border-gray-400 overflow-y-scroll flex flex-col-reverse" +
-          widthClass +
+          "p-2 mt-5 w-[90%] ml-5 mr-1 h-[450px] bg-gray-100 rounded-lg rounded-b-none border border-gray-400 overflow-y-scroll flex flex-col-reverse" +
           darkThemeClass
         }
       >

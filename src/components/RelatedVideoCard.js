@@ -1,36 +1,39 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
+import useWindowDimensions from "../utils/useWindowDimensions";
 
 const RelatedVideoCard = ({ info }) => {
   const { snippet } = info;
   const { title, channelTitle, thumbnails } = snippet;
+  const { height, width } = useWindowDimensions();
 
   const isMenuOpen = useSelector((store) => store.app.isMenuOpen);
   const isDarkTheme = useSelector((store) => store.app.isDarkTheme);
 
   const darkThemeClass = isDarkTheme ? " bg-gray-800 text-white" : "";
 
-  const heightWidthClass = isMenuOpen
-    ? " w-[12.5rem] h-50"
-    : " w-[28rem] h-[10rem]";
+  const heightClass = isMenuOpen ? " h-50" : " h-[10rem]";
+
+  const isMobile = width <= 1080;
+  const showChannel = width > 720;
 
   return (
     <div
       className={
-        "mt-2 mx-1 px-2 pl-3 py-1 shadow-lg flex items-center rounded-lg" +
-        heightWidthClass +
+        "mt-2 mx-2 w-[90%] pl-5 py-1 shadow-lg flex items-center rounded-lg" +
+        heightClass +
         darkThemeClass
       }
     >
       <img alt={title} src={thumbnails.default.url} className="rounded-lg" />
-      {!isMenuOpen && (
-        <div className="pl-3">
+      {
+        <div className="pl-3 pb-2">
           <ul>
-            <li>{title}</li>
-            <li className="font-semibold">{channelTitle}</li>
+            {!isMobile && <li>{title}</li>}
+            {showChannel && <li className="font-semibold">{channelTitle}</li>}
           </ul>
         </div>
-      )}
+      }
     </div>
   );
 };

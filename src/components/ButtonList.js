@@ -9,7 +9,6 @@ const ButtonList = () => {
     "Movie",
     "Red Fort",
     "Bigg Boss",
-    "Mobile",
     "Official",
     "New",
     "Hindi",
@@ -21,7 +20,7 @@ const ButtonList = () => {
   ];
 
   return (
-    <div className="flex">
+    <div className="flex flex-wrap">
       {list.map((item) => (
         <Button key={item} name={item} />
       ))}

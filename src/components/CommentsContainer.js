@@ -46,7 +46,7 @@ const CommentsContainer = ({ videoData }) => {
   return (
     <div
       className={
-        "ml-5 p-5 w-[810px] rounded-lg border border-gray-400" + darkThemeClass
+        "ml-5 p-5 w-[96%] rounded-lg border border-gray-400" + darkThemeClass
       }
     >
       {!error && (

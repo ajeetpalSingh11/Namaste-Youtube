@@ -12,15 +12,12 @@ const LiveChatCustomSend = () => {
   const darkThemeClass = isDarkTheme ? " bg-gray-800 text-white" : "";
   const darkThemeClassButton = isDarkTheme ? " bg-gray-900 text-white" : "";
 
-  const widthClass = isMenuOpen ? " w-[12.5rem]" : " w-[28rem]";
-
   return (
     <div>
       {" "}
       <form
         className={
-          "p-2 ml-2 mr-1 border border-gray-400 flex justify-between rounded-lg rounded-t-none" +
-          widthClass +
+          "p-2 ml-5 mr-1 w-[90%] border border-gray-400 flex justify-between rounded-lg rounded-t-none" +
           darkThemeClass
         }
         onSubmit={(e) => {
