@@ -151,7 +151,6 @@ const Head = () => {
           </div>
         </div>
       </div>
-      {error && <Fallback error={error} />}
     </>
   );
 };
