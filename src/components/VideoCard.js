@@ -23,7 +23,9 @@ const VideoCard = ({ info }) => {
     >
       <img alt={title} src={thumbnails.medium.url} className="rounded-lg" />
       <ul>
-        <li className="pt-2 pb-2 font-bold">{title}</li>
+        <li className="pt-2 pb-2 font-bold">
+          {title.length > 80 ? title.substring(0, 70) : title}
+        </li>
         <li>{channelTitle}</li>
         <li>
           {statistics.viewCount > 1000

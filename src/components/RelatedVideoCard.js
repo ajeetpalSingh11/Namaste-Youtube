@@ -29,7 +29,9 @@ const RelatedVideoCard = ({ info }) => {
       {
         <div className="pl-3 pb-2">
           <ul>
-            {!isMobile && <li>{title}</li>}
+            {!isMobile && (
+              <li>{title.length > 80 ? title.substring(0, 50) : title}</li>
+            )}
             {showChannel && <li className="font-semibold">{channelTitle}</li>}
           </ul>
         </div>
