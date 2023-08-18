@@ -6,7 +6,7 @@ import VideoCard from "./VideoCard";
 const History = () => {
   const isDarkTheme = useSelector((store) => store.app.isDarkTheme);
 
-  const videos = useSelector((store) => store.app.watchedVideos);
+  const videos = useSelector((store) => store.app.history);
 
   const darkThemeClass = isDarkTheme
     ? " bg-gray-700 border border-gray-500"

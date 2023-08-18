@@ -14,15 +14,9 @@ import {
   TRENDING_ICON,
   WATCH_LATER_ICON,
 } from "../utils/constants";
-import {
-  setHome,
-  setSearchVideos,
-  setSidebarSelected,
-} from "../utils/appSlice";
+import { setSearchVideos, setSidebarSelected } from "../utils/appSlice";
 
 const Sidebar = () => {
-  //   const { isMenuOpen } = useContext(MenuContext);
-
   const dispatch = useDispatch();
 
   const isMenuOpen = useSelector((store) => store.app.isMenuOpen);
@@ -37,8 +31,7 @@ const Sidebar = () => {
   return (
     <div
       className={
-        "m-2 p-2 shadow-lg w-60 h-1/3 bg-gray-200 border border-gray-500 rounded-lg sticky top-2" +
-        darkThemeClass
+        "mt-2 p-2 shadow-lg w-60 h-1/3 rounded-lg sticky top-2" + darkThemeClass
       }
     >
       <ul className=" border-gray-500 border-b-2 pb-3">
@@ -46,7 +39,6 @@ const Sidebar = () => {
           <Link
             to="/"
             onClick={() => {
-              dispatch(setHome());
               dispatch(setSearchVideos(""));
               dispatch(setSidebarSelected("Home"));
             }}

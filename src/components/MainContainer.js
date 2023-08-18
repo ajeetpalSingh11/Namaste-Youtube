@@ -21,9 +21,7 @@ const MainContainer = () => {
 
   return (
     <div
-      className={
-        "shadow-lg w-full m-2 p-2 pt-3 bg-gray-100 rounded-lg" + darkThemeClass
-      }
+      className={"shadow-lg w-full m-2 p-2 pt-3 rounded-lg" + darkThemeClass}
     >
       {videos.length === 0 ? <ShimmerButtonList /> : <ButtonList />}
       <VideoContainer />

@@ -20,16 +20,10 @@ const VideoContainer = () => {
   const dispatch = useDispatch();
 
   const searchQuery = useSelector((store) => store.app.searchQuery);
-  const homeClicked = useSelector((store) => store.app.homeClicked);
-  const storeVideos = useSelector((store) => store.app.videos);
 
   useEffect(() => {
     fetchMoreData();
   }, []);
-
-  useEffect(() => {
-    setFilteredVideos(storeVideos);
-  }, [homeClicked]);
 
   useEffect(() => {
     if (searchQuery === "All") {

@@ -5,12 +5,9 @@ const SidebarItem = ({ imgUrl, text }) => {
   const isDarkTheme = useSelector((store) => store.app.isDarkTheme);
   const selected = useSelector((store) => store.app.sidebarSelected);
 
-  const selectedClassLight =
-    selected === text ? " bg-gray-300 border border-gray-400" : "";
+  const selectedClassLight = selected === text ? " bg-gray-200" : "";
   const selectedClassDark =
-    selected === text && isDarkTheme
-      ? " bg-gray-800 border border-gray-400"
-      : "";
+    selected === text && isDarkTheme ? " bg-gray-900" : "";
 
   return (
     <div

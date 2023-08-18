@@ -1,7 +1,10 @@
 import React from "react";
 import Button from "./Button";
+import { useSelector } from "react-redux";
 
 const ButtonList = () => {
+  const isMenuOpen = useSelector((store) => store.app.isMenuOpen);
+
   const list = [
     "All",
     "Song",
@@ -15,9 +18,9 @@ const ButtonList = () => {
     "Delhi",
     "vlog",
     "Vacation",
-    //"Meditation",
-    // "Tourism",
   ];
+  const moreItems = ["Telugu", "Promo", "Mixes"];
+  !isMenuOpen && list.push(...moreItems);
 
   return (
     <div className="flex flex-wrap">

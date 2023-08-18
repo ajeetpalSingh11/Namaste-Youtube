@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import {
   setDarkTheme,
-  setHome,
   setSearchVideos,
   setSidebarSelected,
   toggleMenu,
@@ -52,7 +51,6 @@ const Head = () => {
     try {
       const res = await fetch(YOUTUBE_SEARCH_API + searchQuery);
       const data = await res.json();
-      // console.log(data[1]);
 
       setSuggestions(data[1]);
 
@@ -82,7 +80,6 @@ const Head = () => {
           <Link
             to="/"
             onClick={() => {
-              dispatch(setHome());
               dispatch(setSearchVideos(""));
               dispatch(setSidebarSelected("Home"));
             }}

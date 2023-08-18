@@ -5,13 +5,12 @@ const appSlice = createSlice({
   initialState: {
     isMenuOpen: true,
     videos: [],
+    history: [],
     likedVideos: [],
-    watchedVideos: [],
     watchLaterVideos: [],
     subscribedVideos: [],
     searchQuery: "",
     sidebarSelected: "Home",
-    homeClicked: false,
     isDarkTheme: false,
   },
   reducers: {
@@ -39,8 +38,8 @@ const appSlice = createSlice({
       state.likedVideos.push(action.payload);
     },
 
-    setWatchedVideos: (state, action) => {
-      state.watchedVideos.push(action.payload);
+    setHistory: (state, action) => {
+      state.history.push(action.payload);
     },
 
     setWatchLaterVideos: (state, action) => {
@@ -49,10 +48,6 @@ const appSlice = createSlice({
 
     setSubscribedVideos: (state, action) => {
       state.subscribedVideos.push(action.payload);
-    },
-
-    setHome: (state) => {
-      state.homeClicked = !state.homeClicked;
     },
 
     setDarkTheme: (state) => {
@@ -69,11 +64,10 @@ export const {
   toggleMenu,
   closeMenu,
   openMenu,
-  setHome,
   setSidebarSelected,
   setVideosData,
   setLikedVideos,
-  setWatchedVideos,
+  setHistory,
   setWatchLaterVideos,
   setSubscribedVideos,
   setDarkTheme,

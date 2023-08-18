@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { closeMenu, setWatchedVideos } from "../utils/appSlice";
+import { closeMenu, setHistory, setWatchedVideos } from "../utils/appSlice";
 import { useSearchParams } from "react-router-dom";
 import CommentsContainer from "./CommentsContainer";
 import LiveChat from "./LiveChat";
@@ -15,12 +15,10 @@ const WatchPage = () => {
   const [error, setError] = useState(null);
 
   const dispatch = useDispatch();
-  const watchedVideos = useSelector((store) => store.app.watchedVideos);
+  const history = useSelector((store) => store.app.history);
 
   const findWatchedIndex = () => {
-    return (
-      watchedVideos.findIndex((obj) => obj.id === searchParams.get("v")) !== -1
-    );
+    return history.findIndex((obj) => obj.id === searchParams.get("v")) !== -1;
   };
 
   const isWached = useMemo(() => findWatchedIndex(), []);
@@ -36,7 +34,7 @@ const WatchPage = () => {
 
       setVideoData(data?.items[0]);
 
-      !isWached && dispatch(setWatchedVideos(data?.items[0]));
+      !isWached && dispatch(setHistory(data?.items[0]));
     } catch (error) {
       setError(error);
     }
