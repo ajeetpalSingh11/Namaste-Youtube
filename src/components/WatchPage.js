@@ -47,13 +47,13 @@ const WatchPage = () => {
   return (
     <>
       {!error && (
-        <div className="flex">
-          <div className="flex flex-col w-[60%]">
+        <div className="flex flex-wrap">
+          <div className="flex flex-col">
             <div className="mx-3 mt-5 pl-3">
               <iframe
                 //width="600"
                 //height="450"
-                className="w-full h-[450px]"
+                className="w-[480px] md:w-[800px] h-[320px] md:h-[450px]"
                 src={"https://www.youtube.com/embed/" + searchParams.get("v")}
                 title="YouTube video player"
                 frameBorder="0"
@@ -64,7 +64,7 @@ const WatchPage = () => {
             <VideoDescription videoData={videoData} />
             <CommentsContainer videoData={videoData} />
           </div>
-          <div className="flex flex-col w-[40%]">
+          <div className="flex flex-col">
             <LiveChat />
             <RelatedVideosSidebar />
           </div>

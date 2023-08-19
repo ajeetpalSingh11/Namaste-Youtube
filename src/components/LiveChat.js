@@ -11,7 +11,6 @@ import { closeMenu } from "../utils/appSlice";
 import LiveChatCustomSend from "./LiveChatCustomSend";
 
 const LiveChat = () => {
-  const isMenuOpen = useSelector((store) => store.app.isMenuOpen);
   const chatMessages = useSelector((store) => store.chat.messages);
   const isDarkTheme = useSelector((store) => store.app.isDarkTheme);
 
@@ -43,7 +42,7 @@ const LiveChat = () => {
     <>
       <div
         className={
-          "p-2 mt-5 w-[90%] ml-5 mr-1 h-[450px] rounded-lg rounded-b-none border border-gray-400 overflow-y-scroll flex flex-col-reverse" +
+          "p-2 mt-5 w-[480px] ml-5 mr-1 h-[450px] rounded-lg rounded-b-none border border-gray-400 overflow-y-scroll flex flex-col-reverse" +
           darkThemeClass
         }
       >

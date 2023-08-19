@@ -17,7 +17,7 @@ const LiveChatCustomSend = () => {
       {" "}
       <form
         className={
-          "p-2 ml-5 mr-1 w-[90%] border border-gray-400 flex justify-between rounded-lg rounded-t-none" +
+          "p-2 ml-5 mr-1 w-[480px] border border-gray-400 flex justify-between rounded-lg rounded-t-none" +
           darkThemeClass
         }
         onSubmit={(e) => {

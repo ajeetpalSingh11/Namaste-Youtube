@@ -66,7 +66,7 @@ const VideoDescription = ({ videoData }) => {
   return (
     <div
       className={
-        "mx-5 my-3 p-5 w-[96%] border border-gray-400 rounded-md flex" +
+        "ml-5 my-3 p-5 w-[480px] md:w-[800px] border border-gray-400 rounded-md flex" +
         darkThemeClass
       }
     >
@@ -91,7 +91,7 @@ const VideoDescription = ({ videoData }) => {
           </span>
         </div>
       </div>
-      <div className="mt-4 ml-6">
+      <div className={isMobile ? "mt-4 ml-20" : "mt-4 ml-6"}>
         <button
           className={
             "px-2 py-1 bg-gray-100 rounded-lg border border-gray-400 flex items-center" +

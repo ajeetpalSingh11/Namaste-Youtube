@@ -4,16 +4,13 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { YOUTUBE_API, YOUTUBE_SEARCH_API } from "../utils/constants";
 import Fallback from "./Fallback";
-import useWindowDimensions from "../utils/useWindowDimensions";
 
 const RelatedVideosSidebar = () => {
   const [videos, setVideos] = useState([]);
   const [error, setError] = useState(null);
-  const { height, width } = useWindowDimensions();
 
   const searchQuery = useSelector((store) => store.app.searchQuery);
 
-  const isMenuOpen = useSelector((store) => store.app.isMenuOpen);
   useEffect(() => {
     fetchData();
   }, []);

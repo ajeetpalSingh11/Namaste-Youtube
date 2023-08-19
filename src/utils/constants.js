@@ -18,7 +18,7 @@ export const YOUTUBE_SEARCH_SUGESSTION_API =
   "http://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=";
 
 export const YOUTUBE_COMMENTS_API =
-  "https://youtube.googleapis.com/youtube/v3/commentThreads?part=snippet%2Creplies&maxResults=45&order=relevance&key=" +
+  "https://youtube.googleapis.com/youtube/v3/commentThreads?part=snippet%2Creplies&maxResults=30&order=relevance&key=" +
   GOOGLE_API_KEY;
 
 export const YOUTUBE_ICON =
