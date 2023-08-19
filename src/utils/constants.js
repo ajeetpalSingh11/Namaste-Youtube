@@ -1,9 +1,9 @@
-const GOOGLE_API_KEY = "AIzaSyAeNQNqq-t_c6Ciws564v4UdnqsE-uBvvY";
+const GOOGLE_API_KEY = "AIzaSyD0rGqYPTTS67zVdSWOdqG9Uucno0aeDgc";
 
 export const LIVE_CHAT_OFFSET = 10;
 
 export const YOUTUBE_API =
-  "https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=50&regionCode=IN&key=" +
+  "https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=50&regionCode=US&key=" +
   GOOGLE_API_KEY;
 
 export const YOUTUBE_ID_API =
@@ -11,10 +11,14 @@ export const YOUTUBE_ID_API =
   GOOGLE_API_KEY;
 
 export const YOUTUBE_SEARCH_API =
+  "https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&type=video&key=" +
+  GOOGLE_API_KEY;
+
+export const YOUTUBE_SEARCH_SUGESSTION_API =
   "http://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=";
 
 export const YOUTUBE_COMMENTS_API =
-  "https://youtube.googleapis.com/youtube/v3/commentThreads?part=snippet%2Creplies&maxResults=20&order=relevance&key=" +
+  "https://youtube.googleapis.com/youtube/v3/commentThreads?part=snippet%2Creplies&maxResults=45&order=relevance&key=" +
   GOOGLE_API_KEY;
 
 export const YOUTUBE_ICON =

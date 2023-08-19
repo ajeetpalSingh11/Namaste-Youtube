@@ -27,12 +27,14 @@ const VideoCard = ({ info }) => {
           {title.length > 80 ? title.substring(0, 70) : title}
         </li>
         <li>{channelTitle}</li>
-        <li>
-          {statistics.viewCount > 1000
-            ? Math.trunc(statistics.viewCount / 1000)
-            : statistics.viewCount}
-          {statistics.viewCount > 1000 ? "k views" : "views"}
-        </li>
+        {statistics?.viewCount && (
+          <li>
+            {statistics.viewCount > 1000
+              ? Math.trunc(statistics.viewCount / 1000)
+              : statistics.viewCount}
+            {statistics.viewCount > 1000 ? "k views" : "views"}
+          </li>
+        )}
       </ul>
     </div>
   );

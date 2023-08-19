@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { YOUTUBE_API } from "../utils/constants";
+import { YOUTUBE_API, YOUTUBE_SEARCH_API } from "../utils/constants";
 import VideoCard from "./VideoCard";
 import { Link } from "react-router-dom";
 import Shimmer from "./Shimmer";
@@ -18,35 +18,52 @@ const VideoContainer = () => {
   const [error, setError] = useState(null);
 
   const dispatch = useDispatch();
-
   const searchQuery = useSelector((store) => store.app.searchQuery);
-
-  useEffect(() => {
-    fetchMoreData();
-  }, []);
 
   useEffect(() => {
     if (searchQuery === "All") {
       setFilteredVideos(videos);
+    } else if (searchQuery !== "") {
+      fetchSearchData();
+      setIsFilterApplied(true);
     } else {
-      setFilteredVideos(
-        videos.filter((v) =>
-          v.snippet.title.toLowerCase().includes(searchQuery.toLowerCase())
-        )
-      );
-      if (searchQuery !== "") {
-        setIsFilterApplied(true);
-      } else {
-        setIsFilterApplied(false);
-      }
+      setIsFilterApplied(false);
+      fetchData();
     }
   }, [searchQuery]);
+
+  const fetchSearchData = async () => {
+    try {
+      const res = await fetch(YOUTUBE_SEARCH_API + "&q=" + searchQuery);
+      const data = await res.json();
+
+      //setVideos(data?.items);
+      setFilteredVideos(data?.items);
+    } catch (error) {
+      setError(error);
+    }
+  };
+
+  const fetchData = async () => {
+    try {
+      const res = await fetch(YOUTUBE_API);
+      const data = await res.json();
+
+      setVideos(data?.items);
+      setFilteredVideos(data?.items);
+      setTotalVideos(data.pageInfo.totalResults);
+      setPageToken(data.nextPageToken);
+      dispatch(setVideosData(data.items));
+    } catch (error) {
+      setError(error);
+    }
+  };
 
   const fetchMoreData = async () => {
     if (isFilterApplied) {
       return;
     }
-    if (videos?.length >= totalVideos && videos?.length !== 0) {
+    if (videos?.length >= totalVideos) {
       setHasMore(false);
       return;
     }
@@ -56,9 +73,6 @@ const VideoContainer = () => {
 
       setVideos((prevState) => [...prevState, ...data.items]);
       setFilteredVideos((prevState) => [...prevState, ...data.items]);
-      setTotalVideos(data.pageInfo.totalResults);
-      setPageToken(data.nextPageToken);
-      dispatch(setVideosData(data.items));
     } catch (error) {
       setError(error);
     }
@@ -77,7 +91,14 @@ const VideoContainer = () => {
           <div className="p-5 font-semibold text-xl">No Matching Results</div>
         )}
         {filteredVideos?.map((video) => (
-          <Link key={video.id} to={"/watch?v=" + video.id}>
+          <Link
+            key={typeof video.id === "string" ? video.id : video.id.videoId}
+            to={
+              typeof video.id === "string"
+                ? "/watch?v=" + video.id
+                : "/watch?v=" + video.id.videoId
+            }
+          >
             <VideoCard info={video} />
           </Link>
         ))}

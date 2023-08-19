@@ -43,7 +43,7 @@ const LiveChat = () => {
     <>
       <div
         className={
-          "p-2 mt-5 w-[90%] ml-5 mr-1 h-[450px] bg-gray-100 rounded-lg rounded-b-none border border-gray-400 overflow-y-scroll flex flex-col-reverse" +
+          "p-2 mt-5 w-[90%] ml-5 mr-1 h-[450px] rounded-lg rounded-b-none border border-gray-400 overflow-y-scroll flex flex-col-reverse" +
           darkThemeClass
         }
       >

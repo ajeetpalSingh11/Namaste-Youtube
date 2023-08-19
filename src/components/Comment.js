@@ -18,7 +18,7 @@ const Comment = ({ data }) => {
       <img className="h-10" alt="user" src={USER_ICON} />
       <div className="px-3">
         <p className="font-bold">{name}</p>
-        <p>{text}</p>
+        <p>{text.length > 120 ? text.substring(0, 184) : text}</p>
       </div>
     </div>
   );

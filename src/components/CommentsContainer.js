@@ -39,9 +39,7 @@ const CommentsContainer = ({ videoData }) => {
     // data.items.filter((c) => c.snippet.totalReplyCount > 0)
   };
 
-  const comments = isMenuOpen
-    ? commentsData?.slice(0, 17)
-    : commentsData?.slice(0, 10);
+  const comments = isMenuOpen ? commentsData?.slice(0, 26) : commentsData;
 
   return (
     <div
@@ -55,7 +53,11 @@ const CommentsContainer = ({ videoData }) => {
           <CommentsList comments={comments} />
         </>
       )}
-      {error && <Fallback error={error} />}
+      {error && (
+        <div className="p-4 font-semibold text-lg">
+          Comments are turned off.
+        </div>
+      )}
     </div>
   );
 };

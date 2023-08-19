@@ -7,19 +7,20 @@ const ButtonList = () => {
 
   const list = [
     "All",
-    "Song",
+    "Music",
+    "Mixes",
+    "iphone",
     "India",
-    "Movie",
     "Red Fort",
-    "Bigg Boss",
+    "Movies",
     "Official",
     "New",
     "Hindi",
-    "Delhi",
-    "vlog",
-    "Vacation",
+    "News",
+    "Science",
+    "Meditation",
   ];
-  const moreItems = ["Telugu", "Promo", "Mixes"];
+  const moreItems = ["Telugu", "Apple", "Promo"];
   !isMenuOpen && list.push(...moreItems);
 
   return (

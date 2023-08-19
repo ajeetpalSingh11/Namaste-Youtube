@@ -42,7 +42,7 @@ const LiveChatCustomSend = () => {
         />
         <button
           className={
-            "py-1 px-5 bg-green-200 ml-4 rounded-lg" + darkThemeClassButton
+            "py-1 px-5 bg-gray-200  ml-4 rounded-lg" + darkThemeClassButton
           }
           //   onClick={() => {
           //     dispatch(

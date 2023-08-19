@@ -10,7 +10,7 @@ import {
   DARK_THEME_ICON,
   USER_ICON,
   YOUTUBE_ICON,
-  YOUTUBE_SEARCH_API,
+  YOUTUBE_SEARCH_SUGESSTION_API,
 } from "../utils/constants";
 import { cacheResults } from "../utils/searchSlice";
 import { Link } from "react-router-dom";
@@ -49,7 +49,7 @@ const Head = () => {
 
   const getSearchSuggestions = async () => {
     try {
-      const res = await fetch(YOUTUBE_SEARCH_API + searchQuery);
+      const res = await fetch(YOUTUBE_SEARCH_SUGESSTION_API + searchQuery);
       const data = await res.json();
 
       setSuggestions(data[1]);
@@ -107,7 +107,7 @@ const Head = () => {
               setSearchQuery(e.target.value);
             }}
             onFocus={() => setShowSuggestions(true)}
-            onBlur={() => setShowSuggestions(false)}
+            //onBlur={() => setShowSuggestions(false)}
           />
           <button
             className="border border-gray-400 py-2 rounded-r-full px-4"
@@ -132,6 +132,10 @@ const Head = () => {
                       "px-2 py-2 rounded-lg shadow-sm hover:cursor-pointer" +
                       darkThemeHover
                     }
+                    onClick={() => {
+                      dispatch(setSearchVideos(s));
+                      setSearchQuery(s);
+                    }}
                   >
                     <button>🔍 {s}</button>
                   </li>
