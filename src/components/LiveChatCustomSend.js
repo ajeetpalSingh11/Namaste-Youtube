@@ -4,7 +4,6 @@ import { addMessage } from "../utils/chatslice";
 
 const LiveChatCustomSend = () => {
   const [liveMessage, setLiveMessage] = useState("");
-  const isMenuOpen = useSelector((store) => store.app.isMenuOpen);
   const isDarkTheme = useSelector((store) => store.app.isDarkTheme);
 
   const dispatch = useDispatch();
@@ -14,7 +13,6 @@ const LiveChatCustomSend = () => {
 
   return (
     <div>
-      {" "}
       <form
         className={
           "p-2 ml-5 mr-1 w-[480px] border border-gray-400 flex justify-between rounded-lg rounded-t-none" +

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import RelatedVideoCard from "./RelatedVideoCard";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { YOUTUBE_API, YOUTUBE_SEARCH_API } from "../utils/constants";
+import { YOUTUBE_SEARCH_API } from "../utils/constants";
 import Fallback from "./Fallback";
 
 const RelatedVideosSidebar = () => {
@@ -25,12 +25,18 @@ const RelatedVideosSidebar = () => {
       setError(error);
     }
   };
-  //const storeVideos = useSelector((store) => store.app.videos);
 
   return (
     <div className="p-2">
       {videos?.map((video) => (
-        <Link key={video.id} to={"/watch?v=" + video.id}>
+        <Link
+          key={typeof video.id === "string" ? video.id : video.id.videoId}
+          to={
+            typeof video.id === "string"
+              ? "/watch?v=" + video.id
+              : "/watch?v=" + video.id.videoId
+          }
+        >
           <RelatedVideoCard info={video} />
         </Link>
       ))}

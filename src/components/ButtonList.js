@@ -20,7 +20,7 @@ const ButtonList = () => {
     "Science",
     "Meditation",
   ];
-  const moreItems = ["Telugu", "Apple", "Promo"];
+  const moreItems = ["Telugu", "Apple"];
   !isMenuOpen && list.push(...moreItems);
 
   return (

@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useState } from "react";
 import {
   CHANNEL_ICON,
   LIKED_VIDEOS_ICON,
@@ -10,55 +10,28 @@ import {
   setSubscribedVideos,
   setWatchLaterVideos,
 } from "../utils/appSlice";
-import { useSearchParams } from "react-router-dom";
 import useWindowDimensions from "../utils/useWindowDimensions";
+import useVideoDescription from "../utils/useVideoDescription";
 
 const VideoDescription = ({ videoData }) => {
   const [likeClicked, setLikeClicked] = useState(false);
   const [watchLaterClicked, setWatchLaterClicked] = useState(false);
   const [subscribeClicked, setSubscribeClicked] = useState(false);
-  const [searchParams] = useSearchParams();
-
-  const { height, width } = useWindowDimensions();
-
-  const title = videoData.snippet?.title;
-  const channelTitle = videoData.snippet?.channelTitle;
-  const isDarkTheme = useSelector((store) => store.app.isDarkTheme);
-  const likedVideos = useSelector((store) => store.app.likedVideos);
-  const watchLaterVideos = useSelector((store) => store.app.watchLaterVideos);
-  const subscribedVideos = useSelector((store) => store.app.subscribedVideos);
-
-  const findLikedIndex = () => {
-    return (
-      likedVideos.findIndex((obj) => obj.id === searchParams.get("v")) !== -1
-    );
-  };
-
-  const findWatchLaterIndex = () => {
-    return (
-      watchLaterVideos.findIndex((obj) => obj.id === searchParams.get("v")) !==
-      -1
-    );
-  };
-
-  const findSubscribedIndex = () => {
-    return (
-      subscribedVideos.findIndex((obj) => obj.id === searchParams.get("v")) !==
-      -1
-    );
-  };
-
-  const isLiked = useMemo(() => findLikedIndex(), [likeClicked]);
-  const isWatchLater = useMemo(
-    () => findWatchLaterIndex(),
-    [watchLaterClicked]
-  );
-  const isSubsrcibed = useMemo(() => findSubscribedIndex(), [subscribeClicked]);
 
   const dispatch = useDispatch();
+  const { width } = useWindowDimensions();
+
+  const { isLiked, isWatchLater, isSubsrcibed } = useVideoDescription(
+    likeClicked,
+    watchLaterClicked,
+    subscribeClicked
+  );
+
+  const title = videoData?.snippet?.title;
+  const channelTitle = videoData?.snippet?.channelTitle;
+  const isDarkTheme = useSelector((store) => store.app.isDarkTheme);
 
   const darkThemeClass = isDarkTheme ? " bg-gray-800 text-white" : "";
-
   const darkThemeClassButton = isDarkTheme ? " bg-gray-900 text-white" : "";
 
   const isMobile = width <= 720;

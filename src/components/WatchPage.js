@@ -1,44 +1,20 @@
-import React, { useEffect, useMemo, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { closeMenu, setHistory, setWatchedVideos } from "../utils/appSlice";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { closeMenu } from "../utils/appSlice";
 import { useSearchParams } from "react-router-dom";
 import CommentsContainer from "./CommentsContainer";
 import LiveChat from "./LiveChat";
 import VideoDescription from "./VideoDescription";
 import RelatedVideosSidebar from "./RelatedVideosSidebar";
-import { YOUTUBE_ID_API } from "../utils/constants";
 import Fallback from "./Fallback";
+import useWatchPage from "../utils/useWatchPage";
 
 const WatchPage = () => {
-  const [videoData, setVideoData] = useState({});
   const [searchParams] = useSearchParams();
-  const [error, setError] = useState(null);
+
+  const { videoData, error } = useWatchPage();
 
   const dispatch = useDispatch();
-  const history = useSelector((store) => store.app.history);
-
-  const findWatchedIndex = () => {
-    return history.findIndex((obj) => obj.id === searchParams.get("v")) !== -1;
-  };
-
-  const isWached = useMemo(() => findWatchedIndex(), []);
-
-  useEffect(() => {
-    fetchData();
-  }, [searchParams]);
-
-  const fetchData = async () => {
-    try {
-      const res = await fetch(YOUTUBE_ID_API + "&id=" + searchParams.get("v"));
-      const data = await res.json();
-
-      setVideoData(data?.items[0]);
-
-      !isWached && dispatch(setHistory(data?.items[0]));
-    } catch (error) {
-      setError(error);
-    }
-  };
 
   useEffect(() => {
     dispatch(closeMenu());

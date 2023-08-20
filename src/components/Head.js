@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   setDarkTheme,
   setSearchVideos,
@@ -6,23 +6,22 @@ import {
   toggleMenu,
 } from "../utils/appSlice";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  DARK_THEME_ICON,
-  USER_ICON,
-  YOUTUBE_ICON,
-  YOUTUBE_SEARCH_SUGESSTION_API,
-} from "../utils/constants";
-import { cacheResults } from "../utils/searchSlice";
+import { DARK_THEME_ICON, USER_ICON, YOUTUBE_ICON } from "../utils/constants";
 import { Link } from "react-router-dom";
-import Fallback from "./Fallback";
+import useSearchSuggestions from "../utils/useSearchSuggestions";
 
 const Head = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  const [suggestions, setSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
-  const [error, setError] = useState(null);
 
-  const searchCache = useSelector((store) => store.search);
+  const { suggestions } = useSearchSuggestions(searchQuery);
+
+  const dispatch = useDispatch();
+
+  const handleMenuToggle = () => {
+    dispatch(toggleMenu());
+  };
+
   const isDarkTheme = useSelector((store) => store.app.isDarkTheme);
 
   const darkThemeClass = isDarkTheme ? " bg-gray-700 text-white" : " bg-white";
@@ -30,43 +29,6 @@ const Head = () => {
   const darkThemeHover = isDarkTheme
     ? "  hover:bg-gray-900"
     : "  hover:bg-gray-200";
-
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      if (searchCache[searchQuery]) {
-        setSuggestions(searchCache[searchQuery]);
-      } else {
-        getSearchSuggestions();
-      }
-    }, 200);
-
-    return () => {
-      clearTimeout(timer);
-    };
-  }, [searchQuery]);
-
-  const getSearchSuggestions = async () => {
-    try {
-      const res = await fetch(YOUTUBE_SEARCH_SUGESSTION_API + searchQuery);
-      const data = await res.json();
-
-      setSuggestions(data[1]);
-
-      dispatch(
-        cacheResults({
-          [searchQuery]: data[1],
-        })
-      );
-    } catch (error) {
-      setError(error);
-    }
-  };
-
-  const handleMenuToggle = () => {
-    dispatch(toggleMenu());
-  };
   return (
     <>
       <div className={"grid grid-flow-col p-3 shadow-lg" + darkThemeClass}>
