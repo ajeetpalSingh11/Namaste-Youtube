@@ -3,7 +3,7 @@ const GOOGLE_API_KEY = "AIzaSyBT-pq4QmhO74v0UVxSN6hddvehiZlvU9I";
 export const LIVE_CHAT_OFFSET = 10;
 
 export const YOUTUBE_API =
-  "https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=50&regionCode=US&key=" +
+  "https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=50&regionCode=IN&key=" +
   GOOGLE_API_KEY;
 
 export const YOUTUBE_ID_API =
